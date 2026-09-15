@@ -1,0 +1,23 @@
+# API & UI
+fastapi
+uvicorn[standard]
+streamlit
+pydantic
+
+# Orchestration & LLM
+langgraph
+langgraph-checkpoint-postgres
+langchain-groq
+groq
+
+# Database
+psycopg[binary]
+
+# Research & Scraping
+tavily-python
+trafilatura
+beautifulsoup4
+httpx
+
+# Testing
+pytest
