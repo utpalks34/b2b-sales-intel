@@ -26,9 +26,9 @@ from app.core.state import ExtractedData, SourceDoc
 
 logger = logging.getLogger(__name__)
 
-MODEL = "llama-3.3-70b-versatile"
-MAX_CHARS_PER_SOURCE = 4000     # keep the prompt within a reasonable token budget
-MAX_SOURCES_IN_PROMPT = 12
+MODEL = "openai/gpt-oss-120b"
+MAX_CHARS_PER_SOURCE = 3000     # keep the prompt within a reasonable token budget
+MAX_SOURCES_IN_PROMPT = 5
 
 _client: Groq | None = None
 
@@ -174,7 +174,8 @@ def extract_data(sources: list[SourceDoc]) -> ExtractedData:
             model=MODEL,
             messages=[{"role": "user", "content": prompt}],
             temperature=0.1,
-            max_tokens=2000,
+            max_tokens=1200,
+            reasoning_effort="low",
         )
         raw_text = response.choices[0].message.content
     except Exception as exc:

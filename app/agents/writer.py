@@ -26,7 +26,7 @@ from app.core.state import ExtractedData
 
 logger = logging.getLogger(__name__)
 
-MODEL = "llama-3.3-70b-versatile"
+MODEL = "openai/gpt-oss-120b"
 
 _FALLBACK_EMAIL = (
     "Subject: Quick question about {company}\n\n"
@@ -103,6 +103,7 @@ def draft_email(extracted_data: ExtractedData, strategic_angle: str, feedback: s
             messages=[{"role": "user", "content": prompt}],
             temperature=0.5,
             max_tokens=400,
+            reasoning_effort="low",
         )
         email = response.choices[0].message.content
     except Exception as exc:

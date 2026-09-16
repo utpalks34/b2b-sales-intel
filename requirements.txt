@@ -24,3 +24,4 @@ httpx
 
 # Testing
 pytest
+requests

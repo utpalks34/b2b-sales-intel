@@ -26,7 +26,7 @@ from app.core.state import ExtractedData
 
 logger = logging.getLogger(__name__)
 
-MODEL = "llama-3.3-70b-versatile"
+MODEL = "openai/gpt-oss-120b"
 
 _FALLBACK_ANGLE = (
     "No strong signals were found for this company. Lead with a general "
@@ -108,6 +108,7 @@ def analyze_data(extracted_data: ExtractedData) -> str:
             messages=[{"role": "user", "content": prompt}],
             temperature=0.3,
             max_tokens=200,
+            reasoning_effort="low",
         )
         angle = response.choices[0].message.content
     except Exception as exc:

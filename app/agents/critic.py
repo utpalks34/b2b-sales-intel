@@ -26,7 +26,7 @@ from app.core.state import ExtractedData
 
 logger = logging.getLogger(__name__)
 
-MODEL = "llama-3.3-70b-versatile"
+MODEL = "openai/gpt-oss-120b"
 
 _client: Groq | None = None
 
@@ -115,6 +115,7 @@ def critique_email(draft_email: str, extracted_data: ExtractedData, strategic_an
             messages=[{"role": "user", "content": prompt}],
             temperature=0.2,
             max_tokens=300,
+            reasoning_effort="low",
         )
         raw_text = response.choices[0].message.content
     except Exception as exc:
