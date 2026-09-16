@@ -17,7 +17,7 @@ def _now_iso() -> str:
 
 
 def research_domain(domain: str) -> list[SourceDoc]:
-    """Gather recent news, SEC filings, blog posts, and reviews for a domain.
+    """Gather recent news, SEC filings, blog posts, and company-site overviews for a domain.
 
     Three tiers, in order:
       1. Tavily search (4 targeted queries) -- fast, usually sufficient.

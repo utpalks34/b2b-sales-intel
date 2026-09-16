@@ -9,7 +9,7 @@ class SourceDoc(TypedDict):
     url: str
     title: str
     content: str
-    source_type: Literal["news", "sec_filing", "blog", "company_site", "review_site"]
+    source_type: Literal["news", "sec_filing", "blog", "company_site"]
     scraped_via: Literal["tavily", "trafilatura", "beautifulsoup"]
     fetched_at: str
 
@@ -33,6 +33,7 @@ class PipelineState(TypedDict):
     critic_feedback: Optional[str]
     revision_count: int
     human_decision: Optional[Literal["approved", "rejected", "edited"]]
+    edited_email: Optional[str]
     final_email: Optional[str]
     error_log: list[str]
     updated_at: str

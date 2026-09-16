@@ -13,6 +13,9 @@ groq
 # Database
 psycopg[binary]
 
+# Config
+python-dotenv
+
 # Research & Scraping
 tavily-python
 trafilatura

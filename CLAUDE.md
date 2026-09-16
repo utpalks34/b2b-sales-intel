@@ -21,8 +21,9 @@ email ready to send.
 
 ## Hard rules
 - Never hardcode API keys or secrets. `.env` already holds GROQ_API_KEY,
-  TAVILY_API_KEY, and DATABASE_URL -- load them via os.environ, not dotenv
-  (python-dotenv is not installed).
+  TAVILY_API_KEY, and DATABASE_URL -- `app/core/config.py` loads `.env` via
+  python-dotenv's `load_dotenv()` at import time; read settings from
+  `app.core.config.settings`, not `os.environ` directly.
 - Scraping failures must never hard-fail a pipeline run -- log to error_log and continue.
 - Do not add fields to PipelineState without updating app/core/state.py first.
 - The Writer must use strategic_angle from the analyzer -- the Critic checks for this.
@@ -36,17 +37,15 @@ from the files below without fixing them first.
   `sqlalchemy` + `psycopg2-binary` are in `requirements.txt` -- despite
   `app/db/models.py`'s own docstring and the Hard Rules above calling for
   psycopg3 with no ORM.
-- `app/core/config.py` calls `load_dotenv()`, and `python-dotenv` is in
-  `requirements.txt` -- despite the Hard Rules saying it isn't installed and
-  env vars should be read directly via `os.environ`.
 - `httpx` is imported by `app/scraping/trafilatura_fetch.py`,
   `app/scraping/bs4_fetch.py`, and `app/ui/dashboard.py`, and `langchain-groq`
   is referenced in docstrings in `app/agents/extractor.py` and
   `app/agents/writer.py`, but neither package is listed in `requirements.txt`.
   `requests` is listed but unused.
 - If you touch dependencies, reconcile `requirements.txt` with the Hard Rules
-  (psycopg3 + langchain-groq + httpx; drop sqlalchemy/psycopg2-binary/python-dotenv/requests)
-  rather than treating the current file as ground truth.
+  (psycopg3 + langchain-groq + httpx + python-dotenv; drop
+  sqlalchemy/psycopg2-binary/requests) rather than treating the current file
+  as ground truth.
 
 ## Architecture
 
