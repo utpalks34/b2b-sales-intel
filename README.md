@@ -1,4 +1,4 @@
-# NeuroLeads AI -- Sales Intelligence Orchestrator
+#  Sales Intelligence Orchestrator
 
 Autonomous B2B sales intelligence pipeline: given a company domain, it
 researches the company, extracts structured facts, reasons about the
